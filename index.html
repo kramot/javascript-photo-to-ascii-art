@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Javascript photo to ascii art demo</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="js/imageConvert.js"></script>
+	<link rel='stylesheet'  href='css/style.css' type='text/css' media='all' />
+	</head>
+<body>
+	<div class="container">
+		<div class="section clearfix">
+			<h1>Client-side photo to ASCII art Converter</h1>
+		</div>
+		<div class="section clearfix">
+			<button id="Run">Run -></button><br />
+			This is a client-side image to ASCII converter. It identifies each pixel&#8217;s RBG and translates it to 1 of 14 shades. Each shade is represented by a character &#8211; the lighter the shade the smaller in surface area should the character be.</p>
+			<p>
+				<strong>Usage instructions:</strong><br />
+				Change the image url to point to your image and press <u>ENTER</u>.<br />
+				You may also change the ascii values that correspond with the shades or use the defaults.<br />
+				  <br />
+				<input id="imageUri" name="imgurl" type="url" value="http://www.stencil.ro/wp-content/uploads/2005/04/obey_002.jpg" /></p>
+				<div class="shade">
+					<input name="chars[]" value="@" class="chars" id="char1"><br />
+					<input name="chars[]" value="#" class="chars" id="char2"><br />
+					<input name="chars[]" value="$"  class="chars" id="char3"><br />
+					<input name="chars[]" value="=" class="chars" id="char4">
+				</div>
+				<div  class="shade">
+					<input name="chars[]" value="*" class="chars" id="char5"><br />
+					<input name="chars[]" value="!" class="chars" id="char6"><br />
+					<input name="chars[]" value=";" class="chars" id="char7"><br />
+					<input name="chars[]" value=":" class="chars" id="char8">
+				</div>
+				<div  class="shade">
+					<input name="chars[]" value="~"  class="chars" id="char9"><br />
+					<input name="chars[]" value="-" class="chars" id="char10"><br />
+					<input name="chars[]" value="," class="chars" id="char11"><br />
+					<input name="chars[]" value="." class="chars" id="char12">
+				</div>
+				<div class="shade last">
+					<input name="chars[]" value="&amp;nbsp;"  class="chars" id="char13"><br />
+					<input name="chars[]" value="&amp;nbsp;" class="chars" id="char14">
+				</div>
+			<p>
+			<img id="thisimage" alt="" width="150" crossorigin="anonymous" /></p>
+			<div class="clearBoth">
+				&nbsp;
+			</div>
+			<p><button id="copyButton">Copy to clipboard</button></p>
+			<div id="coloronoff"><input type="checkbox" id="turncolor">Turn colors on/off</div>
+			<div id="wrapper" class="colorOff"></div>
+		</div>
+	</div>
+	<textarea style="display:none" id="wait">
+
+
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                ..    ~-.                                                                               
+                                             ;;;****;,                                                         =@$   ~@@@     :;;                                                                       
+                                            ,@@@@@@@@@~   ;@@                                                  =@@   !@@@~    #@$             $@#  .:;                                                  
+                                            -@@=;;;#@@@.  *@@                                                  !@@.  $@@@#    @@$             $@$  :@@                                                  
+                                            -@@~    #@@-  $@@     .,.                           .$##=,         -@@,  @@*@@.  .@@=             -~-  :@@                                                  
+                                            ~@@-    $@@.  #@#   -$@@@*      ~**!~    .*$#$=!.  .#@@@@@;         @@: .@@~#@:  ,@@!   ,!**;,    -~~ ,*@@#-                                                
+                                            ~@@-   .@@#  .@@$  ~@#==@@$   .$@@@@@$. .@@=!$@@=  !@@;~=@@~        *@$ .@@~;@@  ~@@~  ~@@@@@@;   $@$ *@@@@~                                                
+                                            ~@@-   =@@:  -@@=  @@   ;@@;  $@@@$@@@: :@!   $@#  $@*  .@@$        ~@@,.@@;.@@- :@@.  #@@$$@@@-  $@= -;@@,                                                 
+                                            ~@@@@@@@@@   ;@@: =@$--,-@@@  #@$  .@@~ *@@#*-     #@;.-~#@@.       .@@; @@! =@; =@#  -@@-  ~@@;  #@=  ~@@,                                                 
+                                            ~@@@@@@@=    =@@, #@@@@@@@@@- .,,  :@@- :@@@@@#!   @@@@@@@@@.        =@# $@! -@= @@!  ... .,*@@;  #@=  ~@@-                                                 
+                                            ~@@!:~-,     @@@. @@!~:!=@@@;  -!=@@@@.  .~*$@@@$  @@@#==***.        .@@:=@;  @@,@@-   ~=@@@@@@:  #@*  ~@@-                                                 
+                                            -@@;         @@$  @@;     ,!: ;@@@#:@@. ..   ,@@@. @@@                $@=#@~  #@;@@   ;@@*;~:@@~  #@*  ~@@-                                                 
+                                            .@@*         @@=  #@#.   .    @@$.  @@ ~@@:   #@@- =@@.  .##.         :@@@@,  $@@@:   #@:   ;@@-  @@*  ~@@-   ,-. -$=:                                      
+                                             @@$        .@@*  ~@@@=*!@#$-.@@=  :@@ .@@@#$#@@@  :@@=,,$@$           @@@@   !@@@.   @@$~-;@@@-  @@*  ~@@~  ,@@- ,@@@  ,#$!                                
+                                             #@#         **;   :#@@@@@@=  @@@;!#@@. -$@@@@@#;   *@@@@@@;           $@@=   ~@@#    $@@@@$@@@,  @@*  -@@@! -@@!  #@@  ~@@!                                
+                                             =@@                 ~$#@#=   =@@@#-!,    .,~~-      ~$#@@*            !#@~   ,##~    .*$!. :*#;  =$;   #@@! -##*  *#$  -=#!                                
+                                             ..                            ,-.                                                                       .                                                  
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+                                                                  
+	</textarea>
+	<br />
+</body>
+</html>
+
